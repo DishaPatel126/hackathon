@@ -25,11 +25,11 @@
         <div>
             <p style="font-size: 1.5em; font-weight: 600; color:#080A45; margin-left: 0.5em; margin-bottom: 1em;">SOS
                 Report</p>
-            <form action="" method="post">
+            <form>
                 <div class="form-group my-0">
                     <label for="issue" class="col-sm-2 col-form-label"
                         style="color: #080A45; font-size: 1.05em;">Issue</label>
-                    <select name="issue" id="issue" class="col-sm-4" style="color: #222684;">
+                    <select name="issue" id="issue" class="col-sm-4 p-1" style="color: #222684;" required>
                         <option value="" disabled selected hidden>Select your issue</option>
                         <option value="Poaching Sighting">Poaching Sighting</option>
                         <option value="Violence against animals">Violence against animals</option>
@@ -42,20 +42,21 @@
 
                 <div class="form-group my-1" style="color: #080A45; font-size: 1.05em;">
                     <label for="location" class="col-sm-2 col-form-label">Location</label>
-                    <button onclick="getLocation()"
+                    <button onclick="getLocation()" class="px-3 py-2"
                         style="border: none; border-radius: 5px; background-color: #F1DDD9;"> Get Location.!</button>
-                    <p id="location" style="color: #222684;"></p>
+                    <p id="location" style="color: #222684;" class="ml-3"></p>
                 </div>
 
                 <div class="form-group my-1" style="color: #080A45; font-size: 1.05em;">
                     <label for="dateAndTime" class="col-sm-2 col-form-label">Date and Time</label>
-                    <input type="datetime-local" name="dateAndTime" id="dateAndTime" style="color: #222684;">
+                    <input type="datetime-local" name="dateAndTime" id="dateAndTime" style="color: #222684;"
+                        class=" p-1" required>
                 </div>
 
                 <div class="form-group my-1" style="color: #080A45; font-size: 1.05em;">
                     <label for="description" class="col-sm-2 col-form-label">Description</label>
                     <textarea name="address" id="address" cols="30" rows="3" placeholder="Enter description"
-                        style="color: #222684;"></textarea>
+                        style="color: #222684;" class=" p-1" required></textarea>
                 </div>
 
                 <div class="form-group my-1" style="color: #080A45; font-size: 1.05em;">
@@ -67,15 +68,19 @@
 
                 <div class="form-group my-1" style="color: #080A45; font-size: 1.05em;">
                     <label for="identity" class="col-sm-2 col-form-label">Identity</label>
-                    <div class="anonymous" style="color: #222684;">
-                        <input type="radio" id="anonymous" name="identity" value="Anonymous" class="ml-3">
-                        <label for="anonymous">Anonymous</label>
-                    </div>
-                    <div class="identified" style="color: #222684;">
-                        <input type="radio" id="identified" name="identity" value="Identified" class="ml-3">
-                        <label for="identified">Identified</label>
+                    <div class="radio" required>
+                        <div class="anonymous" style="color: #222684;">
+                            <input type="radio" id="anonymous" name="identity" value="Anonymous" class="ml-3">
+                            <label for="anonymous">Anonymous</label>
+                        </div>
+                        <div class="identified" style="color: #222684;">
+                            <input type="radio" id="identified" name="identity" value="Identified" class="ml-3">
+                            <label for="identified">Identified</label>
+                        </div>
                     </div>
                 </div>
+                <button type="submit" class="py-2 px-4 ml-3"
+                    style="border: none; border-radius: 5px; background-color: #F1DDD9;">Submit.!</button>
             </form>
         </div>
         <script>
@@ -110,6 +115,10 @@
                         break;
                 }
             }
+
+            form.eventListener('submit', (e) => {
+                e.preventDefault();
+            })
         </script>
 
 
