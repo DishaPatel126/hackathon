@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container" style="font-family:'Bricolage Grotesque';">
+        <div class="navbar navbar-expand-lg ">
+            <div class="navbar-brand mx-auto my-2" style="font-size: 2.5em; font-weight: 700; color:#080A45;">BIOSCOPE
+            </div>
+        </div>
+
+
+        <div>
+            <p style="font-size: 1.5em; font-weight: 600; color:#080A45; margin-left: 0.5em; margin-bottom: 1em;">SOS
+                Report</p>
+            <form action="" method="post">
+                <div class="form-group my-0">
+                    <label for="issue" class="col-sm-2 col-form-label"
+                        style="color: #080A45; font-size: 1.05em;">Issue</label>
+                    <select name="issue" id="issue" class="col-sm-4" style="color: #222684;">
+                        <option value="" disabled selected hidden>Select your issue</option>
+                        <option value="Poaching Sighting">Poaching Sighting</option>
+                        <option value="Violence against animals">Violence against animals</option>
+                        <option value="Illegal deforestation">Illegal deforestation</option>
+                        <option value="Illegal trade of animals">Illegal trade of animals</option>
+                        <option value="Microplastics">Microplastics</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group my-1" style="color: #080A45; font-size: 1.05em;">
+                    <label for="location" class="col-sm-2 col-form-label">Location</label>
+                    <button onclick="getLocation()"
+                        style="border: none; border-radius: 5px; background-color: #F1DDD9;"> Get Location.!</button>
+                    <p id="location" style="color: #222684;"></p>
+                </div>
+
+                <div class="form-group my-1" style="color: #080A45; font-size: 1.05em;">
+                    <label for="dateAndTime" class="col-sm-2 col-form-label">Date and Time</label>
+                    <input type="datetime-local" name="dateAndTime" id="dateAndTime" style="color: #222684;">
+                </div>
+
+                <div class="form-group my-1" style="color: #080A45; font-size: 1.05em;">
+                    <label for="description" class="col-sm-2 col-form-label">Description</label>
+                    <textarea name="address" id="address" cols="30" rows="3" placeholder="Enter description"
+                        style="color: #222684;"></textarea>
+                </div>
+
+                <div class="form-group my-1" style="color: #080A45; font-size: 1.05em;">
+                    <label for="evidence" class="col-sm-2 col-form-label">Evidence</label>
+                    <input type="file" name="evidence" id="evidence"
+                        style="color: #222684; border: none; border-radius: 5px;"><br>
+                    <small class="ml-3">It is optional to provide evidence</small>
+                </div>
+
+                <div class="form-group my-1" style="color: #080A45; font-size: 1.05em;">
+                    <label for="identity" class="col-sm-2 col-form-label">Identity</label>
+                    <div class="anonymous" style="color: #222684;">
+                        <input type="radio" id="anonymous" name="identity" value="Anonymous" class="ml-3">
+                        <label for="anonymous">Anonymous</label>
+                    </div>
+                    <div class="identified" style="color: #222684;">
+                        <input type="radio" id="identified" name="identity" value="Identified" class="ml-3">
+                        <label for="identified">Identified</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script>
+            const x = document.getElementById("location");
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition, showError);
+                } else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+
+            function showPosition(position) {
+                x.innerHTML = "Latitude: " + position.coords.latitude +
+                    "<br>Longitude: " + position.coords.longitude;
+            }
+
+            function showError(error) {
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        x.innerHTML = "User denied the request for Geolocation."
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        x.innerHTML = "Location information is unavailable."
+                        break;
+                    case error.TIMEOUT:
+                        x.innerHTML = "The request to get user location timed out."
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        x.innerHTML = "An unknown error occurred."
+                        break;
+                }
+            }
+        </script>
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
